@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - E-Store</title>
+    <style>
+        /* Basic Styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        /* Style the buttons */
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .product-list {
+            margin-top: 20px;
+        }
+
+        .product-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .product-list li {
+            padding: 10px;
+            background-color: #f8f8f8;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .product-form input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .product-form button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="btn back-btn">Back to Home</a>
+        <h1>Products - E-Store</h1>
+        
+        <!-- Add Product Form -->
+        <div class="product-form">
+            <h2>Add New Product</h2>
+            <form method="POST">
+                <label for="name">Product Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter product name" required>
+                
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" placeholder="Enter product price" required>
+                
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
+                
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+
+        <!-- Product List -->
+        <div class="product-list">
+            <h2>Product List</h2>
+            <ul>
+                {% for product in products %}
+                <li>{{ product.name }} - ${{ product.price }} - Stock: {{ product.stock }}</li>
+                {% else %}
+                <li>No products available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
